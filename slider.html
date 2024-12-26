@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Element Journey</title>
+        <link rel="stylesheet" href="xdev.css" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <style>
+                
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #000000;
+    overflow: hidden;
+}
+.hamburger-menu {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1000;
+                cursor: pointer;
+                background: #000;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .hamburger-menu div {
+                width: 30px;
+                height: 3px;
+                background: white;
+                margin: 5px 0;
+                transition: 0.3s;
+            }
+
+            .hamburger-menu.active div:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger-menu.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger-menu.active div:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 250px;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                color: white;
+                padding: 20px;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+                transition: left 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .nav-menu ul li {
+                margin: 20px 0;
+            }
+
+            .nav-menu ul li a {
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                transition: color 0.3s;
+            }
+
+            .nav-menu ul li a:hover {
+                color: #ffa500;
+            }
+
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 500px;
+    background: #000000;
+    box-shadow: 0 10px 15px #979393;
+    border-radius:20%
+}
+
+.container .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #272626;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+    border-radius: 20%
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+
+.slide .item:nth-child(3){
+    left: 50%;
+}
+.slide .item:nth-child(4){
+    left: calc(50% + 220px);
+}
+.slide .item:nth-child(5){
+    left: calc(50% + 440px);
+}
+
+/* here n = 0, 1, 2, 3,... */
+.slide .item:nth-child(n + 6){
+    left: calc(50% + 660px);
+    opacity: 0;
+}
+
+
+
+.item .content{
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #eee;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+
+.content .name{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+.content .des{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+
+
+.button{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button{
+    width: 40px;
+    height: 35px;
+    border-radius:30%;
+    /* border: none; */
+    cursor: pointer;
+    margin: 0 5px;
+    border: 5px solid #000;
+    transition: 0.3s;
+}
+
+.button button:hover{
+    background: #000000;
+    color: #fff;
+}
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Keeps the video behind the content */
+    border-radius: 10%; /* Matches the container styling */
+}
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
+    .slide .item {
+        width: 80%;
+        height: 200px;
+    }
+}
+button:hover {
+    background: #ffa500;
+    color: #000;
+    transform: scale(1.1);
+}
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+
+            </style>
+    </head>
+    <body>
+     
+         <!-- Hamburger Menu -->
+         <div class="hamburger-menu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="index.html">Back to Home</a></li>
+                <!-- <li><a href="contact.html">Contact</a></li> -->
+            </ul>
+        </nav>
+
+
+        <!--Font Awesome CDN-->
+
+        <div class="container">
+            
+
+            <div class="slide">
+                <div class="item">
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/fire.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>  
+                <div class="content">
+                    <div class="name">Fire</div>
+                    <div class="des">The spark of creation.</div>
+                    <button>See More</button>
+                </div>
+            </div>
+
+                <div class="item">
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/earth.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <div class="content">
+                        <div class="name">Earth</div>
+                        <div class="des">The foundation of all life.</div>
+                        <button>See More</button>
+                    </div>
+                </div>
+                
+              
+                
+                <div class="item">
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/space.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <div class="content">
+                        <div class="name">Space</div>
+                        <div class="des">The infinite frontier.</div>
+                        <button>See More</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/time.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <div class="content">
+                        <div class="name">Time</div>
+                        <div class="des">The eternal flow.</div>
+                        <button>See More</button>
+                    </div>
+                </div>
+                <div class="item" >
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/water.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>  
+                    <div class="content">
+                        <div class="name">Water</div>
+                        <div class="des">The essence of life.</div>
+                        <button>See More</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <video autoplay muted loop class="video-bg">
+                        <source src="assets/videos/air.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+                    <div class="content">
+                        <div class="name">Air</div>
+                        <div class="des">The breath of life.</div>
+                        <button><a href="details.html"></a>See More</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="button">
+                <button class="prev"><i
+                        class="fa-solid fa-arrow-left"></i></button>
+                <button class="next"><i
+                        class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div id="videoModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: rgba(0, 0, 0, 0.9); padding: 20px; border-radius: 10px;">
+                <video id="videoPlayer" controls style="width: 80vw; height: 80vh;">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button id="closeVideo" style="position: absolute; top: 10px; right: 10px; color: white; background: red; border: none; padding: 5px 10px; cursor: pointer;">Close</button>
+            </div>
+            
+
+        </div>
+        <script>
+
+            // Array of objects containing details for each element
+            
+const elements = [
+    {
+        id: "fire",
+        name: "Fire",
+        description: "The spark of creation.",
+        video: "assets/videos/fire2.mp4",
+        details: "Fire is the first element of creation and represents energy, passion, and destruction.",
+    },
+    {
+        id: "earth",
+        name: "Earth",
+        description: "The foundation of all life.",
+        video: "assets/videos/earth2.mp4",
+        details: "Earth symbolizes stability, growth, and nourishment, providing the foundation for all life.",
+    },
+    {
+        id: "space",
+        name: "Space",
+        description: "The infinite frontier.",
+        video: "assets/videos/space2.mp4",
+        details: "Space represents infinity, possibilities, and the vast unknown beyond the Earth.",
+    },
+    {
+        id: "time",
+        name: "Time",
+        description: "The eternal flow.",
+        video: "assets/videos/time2.mp4",
+        details: "Time is the ever-flowing river, connecting the past, present, and future.",
+    },
+    {
+        id: "water",
+        name: "Water",
+        description: "The essence of life.",
+        video: "assets/videos/water2.mp4",
+        details: "Water represents adaptability, life, and the ability to shape and flow with circumstances.",
+    },
+    {
+        id: "air",
+        name: "Air",
+        description: "The breath of life.",
+        video: "assets/videos/air2.mp4",
+        details: "Air is essential for life, symbolizing freedom, movement, and communication.",
+    },
+];
+
+// Attach event listeners to the "See More" buttons
+document.querySelectorAll(".content button").forEach((button, index) => {
+    button.addEventListener("click", () => {
+        // Save the element's details in session storage
+        sessionStorage.setItem("elementDetails", JSON.stringify(elements[index]));
+
+        // Redirect to the details page
+        window.location.href = "details.html";
+    });
+});
+ 
+           function toggleMenu() {
+                const navMenu = document.getElementById('navMenu');
+                const hamburgerMenu = document.getElementById('hamburgerMenu');
+                navMenu.classList.toggle('active');
+                hamburgerMenu.classList.toggle('active');
+            }
+           let next = document.querySelector('.next');
+let prev = document.querySelector('.prev');
+
+// Function to manage video playback
+function updateVideoPlayback() {
+    let items = document.querySelectorAll('.item');
+    items.forEach((item, index) => {
+        let video = item.querySelector('video');
+        if (index === 1) { 
+            video.play(); 
+        } else {
+            video.pause(); 
+            video.currentTime = 0;
+        }
+    });
+}
+
+// Initial update when the page loads
+updateVideoPlayback();
+
+// Navigate slides
+next.addEventListener('click', function () {
+    let items = document.querySelectorAll('.item');
+    document.querySelector('.slide').appendChild(items[0]);
+    updateVideoPlayback(); 
+});
+
+prev.addEventListener('click', function () {
+    let items = document.querySelectorAll('.item');
+    document.querySelector('.slide').prepend(items[items.length - 1]);
+    updateVideoPlayback(); 
+});
+
+        </script>
+        
+    </body>
+</html>
+
+
+
+
+
+
+

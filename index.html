@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,121 +12,121 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         html {
-    scroll-behavior: smooth;
-}
+            scroll-behavior: smooth;
+        }
 
-    
-        .navbar-toggler-icon {
-                    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-                }
+        .navbar {
+            z-index: 1;
+            animation: fadeIn 1s ease-in-out;
+        }
 
         .video-background {
-            position: absolute; /* Position the video absolutely */
-            top: 0; /* Align to the top */
-            left: 0; /* Align to the left */
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            object-fit: cover; /* Cover the entire section */
-            z-index: -1; /* Send the video behind other content */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
 
         .full-height {
-            position: relative; /* Ensure the section is positioned relative for absolute children */
-            height: 100vh; /* Set the height to 100% of the viewport height */
-            display: flex; /* Use flexbox to center content */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .navbar {
-    z-index: 1; /* Set a higher z-index for the navbar */
-}
-.video-background {
-    z-index: -1; /* Ensure video stays in the background */
-}
 
-.navbar-nav {
-    display: flex;
-}
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
 
+        /* Navbar brand typing animation */
+        .navbar-brand span {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(20, end), blink 0.5s step-end infinite;
+            border-right: 2px solid transparent;
+        }
+        .display-4 {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 4s steps(20, end), blink 0.5s step-end infinite;
+            border-right: 2px solid transparent;
+        }
+        .lead {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 6s steps(20, end), blink 2s step-end infinite;
+            border-right: 2px solid transparent;
+        }
+        
 
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from {
+                border-right-color: transparent;
+            }
+
+            to {
+                border-right-color: white;
+            }
+        }
     </style>
 </head>
+
 <body>
-    
+
     <main>
-    
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg position-absolute text-light bg-opacity-10">
+            <div class="container">
+                <!-- Logo on the left with typing animation -->
+                <a class="navbar-brand text-success" href="slider.html">
+                    <span>Elements<span class="text-light">Journey</span></span>
+                </a>
 
-       
-            <!-- Navbar -->
-            
-            
-            <nav class="navbar navbar-expand-lg position-absolute text-light bg-opacity-10">
-                <div class="container">
-                    <!-- Logo on the left -->
-                    <a class="navbar-brand text-success" href="slider.html">Elements<span class="text-light">Journey</span></a>
-                    
-                    <!-- Hamburger menu for smaller screens -->
-                    <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-            
-                    <!-- Navigation items -->
-                    <!-- <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="slider.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#earth">Earth</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#water">Water</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#fire">Fire</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#air">Air</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#space">Space</a></li>
-                            <li class="nav-item"><a class="nav-link" href="details.html#time">Time</a></li>
-                        </ul>
-                    </div> -->
-                </div>
-            </nav>
-            
-            <!-- Sections -->
-            <main>
-                <section id="home" class="text-center text-white py-5 full-height">
-                    <video autoplay muted loop class="video-background">
-                        <source src="assets/videos/6981411-hd_1920_1080_25fps.mp4" type="video/mp4"> 
-                        Your browser does not support the video tag.
-                    </video>
-                    
-                    <div class="container">
-                        <h1 class="display-4">Welcome to the Journey of Elements</h1>
-                        <p class="lead">Explore the beauty and power of nature's elements.</p>
-                        <a href="slider.html" class="btn btn-light btn-lg mt-3">Start Journey</a>
-                    </div>
-                </section>
-            </main>
-       
-        
+                <!-- Hamburger menu for smaller screens -->
+                <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Sections -->
+        <section id="home" class="text-center text-white py-5 full-height">
+            <video autoplay muted loop class="video-background">
+                <source src="assets/videos/6981411-hd_1920_1080_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="container">
+                <h1 class="display-4">Welcome to the Journey of Elements</h1>
+                <div></div>
+                <p class="lead">Explore the beauty and power of nature's elements.</p>
+                <div></div>
+                <a href="slider.html" class="btn btn-light btn-lg mt-3">Start Journey</a>
+            </div>
+        </section>
+    </main>
+
     <!-- Bootstrap JS -->
-    <!-- Add Bootstrap and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-    <!-- Custom JS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.element-section');
-            sections.forEach((section) => {
-                section.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-            });
-
-            window.addEventListener('scroll', () => {
-                sections.forEach((section) => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        section.style.opacity = '1';
-                        section.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-        });
-    </script>
 </body>
+
 </html>
